@@ -1,3 +1,5 @@
+git+https://github.com/Rapptz/discord.py
+dnspython==2.2.1
 aiohttp==3.7.4.post0
 aiosignal==1.2.0
 async-timeout==3.0.1
