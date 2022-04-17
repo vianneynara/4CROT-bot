@@ -114,7 +114,6 @@ his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y 
     @commands.command(name='embed')
     @commands.cooldown(1, 300, commands.BucketType.user)
     async def embedc(self, ctx, link):
-        
         role = discord.utils.find(lambda r: r.name == 'Builder', ctx.message.guild.roles)
         if role in ctx.author.roles: # untuk cek apakah builder
             ctx.command.reset_cooldown(ctx)
