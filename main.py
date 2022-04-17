@@ -1,11 +1,12 @@
-import os, time, discord
-from discord.ext import commands
+import discord
 import json
-
+import os
+import time
+from discord.ext import commands
 
 intents = discord.Intents.all()
 discord.member = True
-bot = commands.Bot(command_prefix='>', intents = intents, case_insensitive=True, help_command=None)
+bot = commands.Bot(command_prefix='>', intents=intents, case_insensitive=True, help_command=None)
 
 
 with open("settings.json") as file:
