@@ -111,17 +111,24 @@ his/her UserID is: {user.id}
 his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y | Hour: %H | Minute: %M")}
         """)
 
-    @commands.command()
+    @commands.command(name='embed')
     @commands.cooldown(1, 300, commands.BucketType.user)
-    async def embed(self, ctx, link):
+    async def embedc(self, ctx, link):
+        
+        role = discord.utils.find(lambda r: r.name == 'Builder', ctx.message.guild.roles)
+        if role in ctx.author.roles: # untuk cek apakah builder
+            ctx.command.reset_cooldown(ctx)
+            pass
         if "tenor" in link:
             await ctx.reply("Maaf, tenor link gak didukung.", mention_author=False)
+            return
         else:
             embed = discord.Embed(color=discord.Color.green(), timestamp=datetime.now())
             embed.set_image(url=link)
             embed.set_footer(text=f"by {ctx.author}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
             await ctx.message.delete()
+            return
 
     @commands.command()
     @commands.is_owner()
