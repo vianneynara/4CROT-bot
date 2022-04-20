@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import disnake
+from disnake.ext import commands
 
 
 class Snipe(commands.Cog):
@@ -16,8 +16,8 @@ class Snipe(commands.Cog):
     async def snipe(self, ctx):
         content, author, channel_name, time = self.bot.sniped_messages[ctx.channel.id]
 
-        snipeEmbed = discord.Embed(description=f"***Sniped |*** {content}", color=discord.Color.red(), timestamp=time)
-        snipeEmbed.set_footer(text=f"by {author}", icon_url=author.avatar_url)
+        snipeEmbed = disnake.Embed(description=f"***Sniped |*** {content}", color=disnake.Color.red(), timestamp=time)
+        snipeEmbed.set_footer(text=f"by {author}", icon_url=author.avatar.url)
 
         await ctx.channel.send(embed=snipeEmbed)
 

@@ -1,10 +1,10 @@
 import asyncio
-import discord
+import disnake
 import os
 import random
 import time
 from datetime import datetime
-from discord.ext import commands
+from disnake.ext import commands
 
 berhenti = False
 
@@ -17,7 +17,7 @@ class Commands(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def help(self, ctx):
-        embed = discord.Embed(
+        embed = disnake.Embed(
             title='Help Commands',
             color=random.choice([0xfc0303, 0x03d3fc, 0x03fc07, 0xd7fc03]),
             description="""
@@ -95,7 +95,7 @@ spam""")
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
-    async def whoami(self, ctx, user: discord.User = None):
+    async def whoami(self, ctx, user: disnake.User = None):
         if user is None:
             await ctx.reply(f"""
 Your Name is: {ctx.author.name}
@@ -108,21 +108,23 @@ Your account age: {ctx.author.created_at.strftime("Day: %d | Month: %m | Year: %
 his/her name is: {user.name}
 his/her Display name is: {user.display_name}
 his/her UserID is: {user.id}
-his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y | Hour: %H | Minute: %M")}
+his/her account age: {user.created_at.strftime("Day: %d | Month: %m | Year: %Y | Hour: %H | Minute: %M")}
         """)
 
     @commands.command(name='embed')
     @commands.cooldown(1, 300, commands.BucketType.user)
     async def embedc(self, ctx, link):
-        role = discord.utils.find(lambda r: r.name == 'Builder', ctx.message.guild.roles)
-        if role in ctx.author.roles: # untuk cek apakah builder
+        # role = discord.utils.find(lambda r: r.name == 'Builder', ctx.message.guild.roles)
+        # role = discord.utils.get(ctx.message.guild.roles, id=896617220673785887), discord.utils.get(ctx.message.guild.roles, id=896617220673785887)
+        # print(ctx.author.roles) # "896617220673785887" or "883722818888536094"
+        if 896617220673785887 or 883722818888536094 in ctx.author.roles: # untuk cek apakah builder/staff
             ctx.command.reset_cooldown(ctx)
             pass
         if "tenor" in link:
             await ctx.reply("Maaf, tenor link gak didukung.", mention_author=False)
             return
         else:
-            embed = discord.Embed(color=discord.Color.green(), timestamp=datetime.now())
+            embed = disnake.Embed(color=disnake.Color.green(), timestamp=datetime.now())
             embed.set_image(url=link)
             embed.set_footer(text=f"by {ctx.author}", icon_url=ctx.author.avatar_url)
             await ctx.send(embed=embed)
@@ -131,7 +133,7 @@ his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y 
 
     @commands.command()
     @commands.is_owner()
-    async def spam(self, ctx, user: discord.User, juml):
+    async def spam(self, ctx, user: disnake.User, juml):
         global berhenti
         for i in range(int(juml)):
             if berhenti == False:
@@ -230,7 +232,7 @@ his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y 
 
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
-    async def sex(self, ctx, user: discord.User):
+    async def sex(self, ctx, user: disnake.User):
         await ctx.reply(
             f"Kamu sek dengan {user.name}. Moncroot\n{random.choice(['https://tenor.com/view/degrom-dance-idk-zumba-imen-gif-21292699', 'https://cdn.discordapp.com/attachments/880509666482860042/890878449567272970/20210924_090418.jpg'])}")
 
@@ -263,7 +265,7 @@ his/her account age: {user.createed_at.strftime("Day: %d | Month: %m | Year: %Y 
             elif message.channel.guild.id == 520809362525257748:  # jika message ada di server kub
                 channel = self.bot.get_channel(940812191198773288)  # log bot 4crot di kub
 
-            embedz = discord.Embed(
+            embedz = disnake.Embed(
                 title='Media/link Sent!',
                 color=random.choice([0xfc0303, 0x03d3fc, 0x03fc07, 0xd7fc03]),
                 description=(f""" 
@@ -277,7 +279,7 @@ Channel = <#{message.channel.id}>
 
         for a in message.attachments:
             channel = self.bot.get_channel(887908566382571580)
-            embed = discord.Embed(
+            embed = disnake.Embed(
                 title='Media/link Sent!',
                 color=random.choice([0xfc0303, 0x03d3fc, 0x03fc07, 0xd7fc03]),
                 description=(f""" 

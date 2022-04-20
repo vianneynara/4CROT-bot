@@ -1,11 +1,11 @@
-import discord
+import disnake
 import json
 import os
 import time
-from discord.ext import commands
+from disnake.ext import commands
 
-intents = discord.Intents.all()
-discord.member = True
+intents = disnake.Intents.all()
+disnake.member = True
 bot = commands.Bot(command_prefix='>', intents=intents, case_insensitive=True, help_command=None)
 
 
@@ -40,7 +40,7 @@ async def unload(ctx, extension):
         bot.unload_extension(f'cogs.{extension}')
         await ctx.reply(f'unloaded {extension}')
 
-@bot.command(name="reload",aliases=["refresh"])
+@bot.command(name="reload", aliases=["refresh"])
 async def reload(ctx, extension):
     if ctx.author.guild_permissions.administrator:
         extension = extension.lower()
@@ -48,6 +48,15 @@ async def reload(ctx, extension):
         time.sleep(1)
         bot.load_extension(f'cogs.{extension}')
         await ctx.reply(f'Reloaded {extension}')
+
+
+@bot.command(name='shutdown')
+async def shutdown(ctx):
+    print(ctx.author, "initiated shutdown.")
+    if ctx.author.id in [389034898666553344]:
+        exit()
+    else:
+        return
     
 
 for filename in os.listdir('./cogs'):

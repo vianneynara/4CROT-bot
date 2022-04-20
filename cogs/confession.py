@@ -1,5 +1,5 @@
-import discord
-from discord.ext import commands
+import disnake
+from disnake.ext import commands
 import datetime
 
 
@@ -18,7 +18,7 @@ class confession(commands.Cog):
             
         # mengirim sesuai permintaan tipe confession
         if type in ("anon", "anonim"):
-            confession = discord.Embed(title="Confession", description=message, color=0xFFFFFF)
+            confession = disnake.Embed(title="Confession", description=message, color=0xFFFFFF)
             confession.set_footer(text="❔ Anonim")
             confession.timestamp = datetime.datetime.utcnow()
             await ctx.bot.get_channel(958714095580897350).send(embed=confession)
@@ -26,7 +26,7 @@ class confession(commands.Cog):
             await ctx.reply("Confession telah dikirim ke <#958714095580897350>!")
         elif type in ("publik", "public"):
             pengirim = str(ctx.author.name + "#" + ctx.author.discriminator)
-            confession = discord.Embed(title="Confession", description=message, color=0xFFFFFF)
+            confession = disnake.Embed(title="Confession", description=message, color=0xFFFFFF)
             confession.set_footer(text=pengirim, icon_url=ctx.author.avatar_url)
             confession.timestamp = datetime.datetime.utcnow()
             await ctx.bot.get_channel(958714095580897350).send(embed=confession)

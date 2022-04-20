@@ -1,9 +1,9 @@
-import discord
+import disnake
 import os
 import random
 import time
-from discord.ext import commands
-from discord.utils import get
+from disnake.ext import commands
+from disnake.utils import get
 
 ripbozo = ['https://tenor.com/view/rip-bozo-ripus-bozus-nik0321-unlive2774-potato-chip-smoker-bozo-gif-21079712', 'https://tenor.com/view/rip-gif-21571424', 'https://tenor.com/view/ripbozo-lebron-rip-plug-piss-gif-20478223', 'https://tenor.com/view/twice-laughing-laugh-nayeon-tzuyu-gif-21686501', 'https://tenor.com/view/bigboss-metalgearsol-snake-venomsnake-rip-gif-22244218']
  
