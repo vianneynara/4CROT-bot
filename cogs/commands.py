@@ -126,7 +126,7 @@ his/her account age: {user.created_at.strftime("Day: %d | Month: %m | Year: %Y |
         else:
             embed = disnake.Embed(color=disnake.Color.green(), timestamp=datetime.now())
             embed.set_image(url=link)
-            embed.set_footer(text=f"by {ctx.author}", icon_url=ctx.author.avatar_url)
+            embed.set_footer(text=f"by {ctx.author}", icon_url=ctx.author.avatar.url)
             await ctx.send(embed=embed)
             await ctx.message.delete()
             return

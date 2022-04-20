@@ -27,7 +27,7 @@ class confession(commands.Cog):
         elif type in ("publik", "public"):
             pengirim = str(ctx.author.name + "#" + ctx.author.discriminator)
             confession = disnake.Embed(title="Confession", description=message, color=0xFFFFFF)
-            confession.set_footer(text=pengirim, icon_url=ctx.author.avatar_url)
+            confession.set_footer(text=pengirim, icon_url=ctx.author.avatar.url)
             confession.timestamp = datetime.datetime.utcnow()
             await ctx.bot.get_channel(958714095580897350).send(embed=confession)
             await ctx.bot.get_channel(958744662523408464).send(f"`{ctx.author.name}#{ctx.author.discriminator}`/<@{ctx.author.id}> confessed: {message}")
