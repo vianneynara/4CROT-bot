@@ -18,7 +18,11 @@ async def on_ready():
     print("=====================")
     print("Bot Online")
     print("====================")
-    
+
+@bot.slash_command(name="ping", description="pings the bot")
+@commands.cooldown(1, 5, commands.BucketType.user)
+async def _ping(inter: ApplicationCommandInteraction):
+    await inter.response.send_message(f"🏓 Pong! ``{round(bot.latency * 1000)} ms``")
 
 @bot.event
 async def on_member_join(member):
