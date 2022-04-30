@@ -1,3 +1,4 @@
 Procfile
 .idea
 helpEmbed.json
+__pycache__

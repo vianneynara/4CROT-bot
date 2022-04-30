@@ -19,10 +19,10 @@ async def on_ready():
     print("Bot Online")
     print("====================")
 
-@bot.slash_command(name="ping", description="pings the bot")
-@commands.cooldown(1, 5, commands.BucketType.user)
-async def _ping(inter: ApplicationCommandInteraction):
-    await inter.response.send_message(f"🏓 Pong! ``{round(bot.latency * 1000)} ms``")
+@bot.command()
+@commands.cooldown(1, 15, commands.BucketType.channel)
+async def ping(ctx):
+    await ctx.reply(f"🏓 Pong! ``{round(bot.latency * 1000)} ms``")
 
 @bot.event
 async def on_member_join(member):
@@ -71,7 +71,6 @@ for filename in os.listdir('./cogs'):
 @reload.error
 async def reload_error(self, ctx, error):
     ctx.reply("Lu mau refresh yang mana goblok")
-
     
 TOKEN = settings["token"]
 bot.run(TOKEN)
