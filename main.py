@@ -1,6 +1,7 @@
 import disnake
 import json
 import os
+import dotenv
 import time
 from disnake.ext import commands
 
@@ -72,5 +73,4 @@ for filename in os.listdir('./cogs'):
 async def reload_error(self, ctx, error):
     ctx.reply("Lu mau refresh yang mana goblok")
     
-TOKEN = settings["token"]
-bot.run(TOKEN)
+bot.run(os.environ.get("TOKEN"))
