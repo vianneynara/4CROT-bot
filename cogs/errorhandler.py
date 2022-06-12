@@ -12,7 +12,7 @@ class ErrorHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.CommandNotFound):
-            await ctx.message.add_reaction('❔')
+            await ctx.message.add_reaction("❔")
 
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.reply("Perintah tidak lengkap!", mention_author=False)
@@ -25,13 +25,16 @@ class ErrorHandler(commands.Cog):
 
         # cooldown detection
         elif isinstance(error, commands.CommandOnCooldown):
-            await ctx.message.add_reaction('<:command_cooldown:960940883501547540>')
+            await ctx.message.add_reaction("<:command_cooldown:960940883501547540>")
             await ctx.author.send(
-                f"<@{ctx.author.id}>, tunggu ``{error.retry_after:.0f}s`` sebelum menulis perintah lain!")
+                f"<@{ctx.author.id}>, tunggu ``{error.retry_after:.0f}s`` sebelum menulis perintah lain!"
+            )
 
         # detail error
         else:
-            formatted = "".join(traceback.format_exception(type(error), error, error.__traceback__))
+            formatted = "".join(
+                traceback.format_exception(type(error), error, error.__traceback__)
+            )
             print(formatted)
 
 
