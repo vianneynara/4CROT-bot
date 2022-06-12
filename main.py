@@ -9,11 +9,6 @@ intents = disnake.Intents.all()
 disnake.member = True
 bot = commands.Bot(command_prefix='>', intents=intents, case_insensitive=True, help_command=None)
 
-
-with open("settings.json") as file:
-    settings = json.load(file)
-
-
 @bot.event
 async def on_ready():
     print("=====================")
@@ -72,5 +67,6 @@ for filename in os.listdir('./cogs'):
 @reload.error
 async def reload_error(self, ctx, error):
     ctx.reply("Lu mau refresh yang mana goblok")
-    
+
+dotenv.load_dotenv()
 bot.run(os.environ.get("TOKEN"))
